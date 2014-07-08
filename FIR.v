@@ -9,7 +9,7 @@ input   signed [15:0] data;
 output	fir_valid;
 output	[15:0] fir_d;
 
-wire [15:0] fir_d;
+wire signed [15:0] fir_d;
 reg  [5:0]  fir_counter;
 reg   fir_valid;
 
@@ -153,13 +153,16 @@ always@(posedge clk or posedge rst)
 	end
 
 reg signed [43:0] adder_final;
+wire signed [15:0] tmp;
+
 always@(posedge clk or posedge rst)
 	if(rst)
 		adder_final <= 0;
 	else
 		adder_final <= adder_level3_00 + adder_level3_01;
 
-assign fir_d = {adder_final[40], adder_final[30:16]};
+assign tmp = {adder_final[40], adder_final[30:16]};
+assign fir_d = (tmp == 16'hffff) ? 0 : tmp;
 
 always@(posedge clk or posedge rst)
 	if(rst)
@@ -341,12 +344,4 @@ always@(posedge clk or posedge rst)
 	else if((fir_counter == 6'd37) && data_valid)
 		fir_valid <= 1'b1;
 
-reg [10:0] fir_cnt;
-always@(posedge clk or posedge rst)
-	if(rst)
-		fir_cnt <= 0;
-	else if(|fir_cnt)
-		fir_cnt <= fir_cnt + 1;
-	else if(fir_valid)
-		fir_cnt <= 1;
 endmodule
