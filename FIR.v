@@ -139,12 +139,12 @@ always@(posedge clk or posedge rst)
 // Adder third level
 reg signed [39:0] adder_level3_00;
 reg signed [39:0] adder_level3_01;
-
 always@(posedge clk or posedge rst)
 	if(rst)
 	begin
 		adder_level3_00 <= 0;
 		adder_level3_01 <= 0;
+
 	end
 	else
 	begin
@@ -152,8 +152,7 @@ always@(posedge clk or posedge rst)
 		adder_level3_01 <= adder_level2_02 + adder_level2_03; 
 	end
 
-reg signed [43:0] adder_final;
-wire signed [15:0] tmp;
+reg signed [40:0] adder_final;
 
 always@(posedge clk or posedge rst)
 	if(rst)
@@ -161,8 +160,7 @@ always@(posedge clk or posedge rst)
 	else
 		adder_final <= adder_level3_00 + adder_level3_01;
 
-assign tmp = {adder_final[40], adder_final[30:16]};
-assign fir_d = (tmp == 16'hffff) ? 0 : tmp;
+assign fir_d = adder_final[40] ? {adder_final[40], adder_final[30:16]} + 1 : {adder_final[40], adder_final[30:16]};
 
 always@(posedge clk or posedge rst)
 	if(rst)
@@ -243,6 +241,7 @@ always@(posedge clk or posedge rst)
 		adder_14 <= data_shift_13 + data_shift_16;
 		adder_15 <= data_shift_14 + data_shift_15;
 	end
+
 
 always@(posedge clk or posedge rst)
 	if(rst)
