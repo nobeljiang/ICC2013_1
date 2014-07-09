@@ -8,12 +8,16 @@ input clk, rst;
 input signed [15:0]	fir_d;
 input fir_valid;
 
-output signed [31:0] fft_d0, fft_d1, fft_d2, fft_d3;
-output signed [31:0] fft_d4, fft_d5, fft_d6, fft_d7;
-output signed [31:0] fft_d8, fft_d9, fft_d10, fft_d11;
-output signed [31:0] fft_d12, fft_d13, fft_d14, fft_d15;
+output [31:0] fft_d0, fft_d1, fft_d2, fft_d3;
+output [31:0] fft_d4, fft_d5, fft_d6, fft_d7;
+output [31:0] fft_d8, fft_d9, fft_d10, fft_d11;
+output [31:0] fft_d12, fft_d13, fft_d14, fft_d15;
 output fft_valid;
 
+wire [31:0] fft_d0, fft_d1, fft_d2, fft_d3;
+wire [31:0] fft_d4, fft_d5, fft_d6, fft_d7;
+wire [31:0] fft_d8, fft_d9, fft_d10, fft_d11;
+wire [31:0] fft_d12, fft_d13, fft_d14, fft_d15;
 //Image
 parameter W0_Imag = 32'h00000000;
 parameter W1_Imag = 32'hFFFF9E09;
@@ -87,10 +91,10 @@ FFT_ADDER FFT_S2_0 (clk, rst, stage2_valid, stage1_real_0,  stage1_imag_0,   sta
 FFT_ADDER FFT_S2_1 (clk, rst, stage2_valid, stage1_real_1,  stage1_imag_1,   stage1_real_5,  stage1_imag_5,  stage2_real_1,  stage2_imag_1);
 FFT_ADDER FFT_S2_2 (clk, rst, stage2_valid, stage1_real_2,  stage1_imag_2,   stage1_real_6,  stage1_imag_6,  stage2_real_2,  stage2_imag_2);
 FFT_ADDER FFT_S2_3 (clk, rst, stage2_valid, stage1_real_3,  stage1_imag_3,   stage1_real_7,  stage1_imag_7,  stage2_real_3,  stage2_imag_3);
-FFT_ADDER FFT_S2_8 (clk, rst, stage2_valid, stage1_real_8,  stage1_imag_8,   stage1_real_12, stage1_imag_12, stage1_real_8,  stage1_imag_8);
-FFT_ADDER FFT_S2_9 (clk, rst, stage2_valid, stage1_real_9,  stage1_imag_9,   stage1_real_13, stage1_imag_13, stage1_real_9,  stage1_imag_9);
-FFT_ADDER FFT_S2_10(clk, rst, stage2_valid, stage1_real_10, stage1_imag_10,  stage1_real_14, stage1_imag_14, stage1_real_10, stage1_imag_10);
-FFT_ADDER FFT_S2_11(clk, rst, stage2_valid, stage1_real_11, stage1_imag_11,  stage1_real_15, stage1_imag_15, stage1_real_11, stage1_imag_11);
+FFT_ADDER FFT_S2_8 (clk, rst, stage2_valid, stage1_real_8,  stage1_imag_8,   stage1_real_12, stage1_imag_12, stage2_real_8,  stage2_imag_8);
+FFT_ADDER FFT_S2_9 (clk, rst, stage2_valid, stage1_real_9,  stage1_imag_9,   stage1_real_13, stage1_imag_13, stage2_real_9,  stage2_imag_9);
+FFT_ADDER FFT_S2_10(clk, rst, stage2_valid, stage1_real_10, stage1_imag_10,  stage1_real_14, stage1_imag_14, stage2_real_10, stage2_imag_10);
+FFT_ADDER FFT_S2_11(clk, rst, stage2_valid, stage1_real_11, stage1_imag_11,  stage1_real_15, stage1_imag_15, stage2_real_11, stage2_imag_11);
 
 FFT_MULTI FFT_S2_4 (clk, rst, stage2_valid, stage1_real_4,  stage1_imag_4,  stage1_real_0,  stage1_imag_0,  W0_Real, W0_Imag, stage2_real_4,  stage2_imag_4);
 FFT_MULTI FFT_S2_5 (clk, rst, stage2_valid, stage1_real_5,  stage1_imag_5,  stage1_real_1,  stage1_imag_1,  W2_Real, W2_Imag, stage2_real_5,  stage2_imag_5);
@@ -121,12 +125,12 @@ FFT_ADDER FFT_S3_9 (clk, rst, stage3_valid, stage2_real_9,  stage2_imag_9,   sta
 FFT_ADDER FFT_S3_12(clk, rst, stage3_valid, stage2_real_12, stage2_imag_12,  stage2_real_14, stage2_imag_14, stage3_real_12, stage3_imag_12);
 FFT_ADDER FFT_S3_13(clk, rst, stage3_valid, stage2_real_13, stage2_imag_13,  stage2_real_15, stage2_imag_15, stage3_real_13, stage3_imag_13);
 
-FFT_MULTI FFT_S3_2 (clk, rst, stage3_valid, stage2_real_2,  stage2_imag_2,  stage2_real_0,  stage2_imag_0,  W0_Real, W0_Imag, stage3_real_4,  stage3_imag_4);
-FFT_MULTI FFT_S3_3 (clk, rst, stage3_valid, stage2_real_3,  stage2_imag_3,  stage2_real_1,  stage2_imag_1,  W4_Real, W4_Imag, stage3_real_5,  stage3_imag_5);
+FFT_MULTI FFT_S3_2 (clk, rst, stage3_valid, stage2_real_2,  stage2_imag_2,  stage2_real_0,  stage2_imag_0,  W0_Real, W0_Imag, stage3_real_2,  stage3_imag_2);
+FFT_MULTI FFT_S3_3 (clk, rst, stage3_valid, stage2_real_3,  stage2_imag_3,  stage2_real_1,  stage2_imag_1,  W4_Real, W4_Imag, stage3_real_3,  stage3_imag_3);
 FFT_MULTI FFT_S3_6 (clk, rst, stage3_valid, stage2_real_6,  stage2_imag_6,  stage2_real_4,  stage2_imag_4,  W0_Real, W0_Imag, stage3_real_6,  stage3_imag_6);
 FFT_MULTI FFT_S3_7 (clk, rst, stage3_valid, stage2_real_7,  stage2_imag_7,  stage2_real_5,  stage2_imag_5,  W4_Real, W4_Imag, stage3_real_7,  stage3_imag_7);
-FFT_MULTI FFT_S3_10(clk, rst, stage3_valid, stage2_real_10, stage2_imag_10, stage2_real_8,  stage2_imag_8,  W0_Real, W0_Imag, stage3_real_12, stage3_imag_12);
-FFT_MULTI FFT_S3_11(clk, rst, stage3_valid, stage2_real_11, stage2_imag_11, stage2_real_9,  stage2_imag_9,  W4_Real, W4_Imag, stage3_real_13, stage3_imag_13);
+FFT_MULTI FFT_S3_10(clk, rst, stage3_valid, stage2_real_10, stage2_imag_10, stage2_real_8,  stage2_imag_8,  W0_Real, W0_Imag, stage3_real_10, stage3_imag_10);
+FFT_MULTI FFT_S3_11(clk, rst, stage3_valid, stage2_real_11, stage2_imag_11, stage2_real_9,  stage2_imag_9,  W4_Real, W4_Imag, stage3_real_11, stage3_imag_11);
 FFT_MULTI FFT_S3_14(clk, rst, stage3_valid, stage2_real_14, stage2_imag_14, stage2_real_12, stage2_imag_12, W0_Real, W0_Imag, stage3_real_14, stage3_imag_14);
 FFT_MULTI FFT_S3_15(clk, rst, stage3_valid, stage2_real_15, stage2_imag_15, stage2_real_13, stage2_imag_13, W4_Real, W4_Imag, stage3_real_15, stage3_imag_15);
 
@@ -141,25 +145,40 @@ wire signed [31:0] stage4_imag_4, stage4_imag_5, stage4_imag_6, stage4_imag_7;
 wire signed [31:0] stage4_imag_8, stage4_imag_9, stage4_imag_10, stage4_imag_11;
 wire signed [31:0] stage4_imag_12, stage4_imag_13, stage4_imag_14, stage4_imag_15;
 
-FFT_ADDER FFT_S4_0 (clk, rst, stage4_valid, stage3_real_0,  stage3_imag_0,   stage3_real_1,  stage3_imag_1,  fft_d,  stage4_imag_0);
-FFT_ADDER FFT_S4_1 (clk, rst, stage4_valid, stage3_real_2,  stage3_imag_2,   stage3_real_3,  stage3_imag_3,  fft_d,  stage4_imag_1);
-FFT_ADDER FFT_S4_4 (clk, rst, stage4_valid, stage3_real_4,  stage3_imag_4,   stage3_real_4,  stage3_imag_5,  fft_d,  stage4_imag_4);
-FFT_ADDER FFT_S4_5 (clk, rst, stage4_valid, stage3_real_6,  stage3_imag_6,   stage3_real_7,  stage3_imag_7,  fft_d,  stage4_imag_5);
-FFT_ADDER FFT_S4_8 (clk, rst, stage4_valid, stage3_real_8,  stage3_imag_8,   stage3_real_9,  stage3_imag_9,  fft_d,  stage4_imag_8);
-FFT_ADDER FFT_S4_9 (clk, rst, stage4_valid, stage3_real_10, stage3_imag_10,  stage3_real_11, stage3_imag_11, fft_d,  stage4_imag_9);
-FFT_ADDER FFT_S4_12(clk, rst, stage4_valid, stage3_real_12, stage3_imag_12,  stage3_real_13, stage3_imag_13, fft_d, stage4_imag_12);
-FFT_ADDER FFT_S4_13(clk, rst, stage4_valid, stage3_real_14, stage3_imag_14,  stage3_real_15, stage3_imag_15, fft_d, stage4_imag_13);
+FFT_ADDER FFT_S4_0 (clk, rst, stage4_valid, stage3_real_0,  stage3_imag_0,   stage3_real_1,  stage3_imag_1,  stage4_real_0,  stage4_imag_0);
+FFT_ADDER FFT_S4_2 (clk, rst, stage4_valid, stage3_real_2,  stage3_imag_2,   stage3_real_3,  stage3_imag_3,  stage4_real_2,  stage4_imag_2);
+FFT_ADDER FFT_S4_4 (clk, rst, stage4_valid, stage3_real_4,  stage3_imag_4,   stage3_real_5,  stage3_imag_5,  stage4_real_4,  stage4_imag_4);
+FFT_ADDER FFT_S4_6 (clk, rst, stage4_valid, stage3_real_6,  stage3_imag_6,   stage3_real_7,  stage3_imag_7,  stage4_real_6,  stage4_imag_6);
+FFT_ADDER FFT_S4_8 (clk, rst, stage4_valid, stage3_real_8,  stage3_imag_8,   stage3_real_9,  stage3_imag_9,  stage4_real_8,  stage4_imag_8);
+FFT_ADDER FFT_S4_10(clk, rst, stage4_valid, stage3_real_10, stage3_imag_10,  stage3_real_11, stage3_imag_11, stage4_real_10, stage4_imag_10);
+FFT_ADDER FFT_S4_12(clk, rst, stage4_valid, stage3_real_12, stage3_imag_12,  stage3_real_13, stage3_imag_13, stage4_real_12, stage4_imag_12);
+FFT_ADDER FFT_S4_14(clk, rst, stage4_valid, stage3_real_14, stage3_imag_14,  stage3_real_15, stage3_imag_15, stage4_real_14, stage4_imag_14);
 
-FFT_MULTI FFT_S3_2 (clk, rst, stage3_valid, stage2_real_2,  stage2_imag_2,  stage2_real_0,  stage2_imag_0,  W0_Real, W0_Imag, stage3_real_4,  stage3_imag_4);
-FFT_MULTI FFT_S3_3 (clk, rst, stage3_valid, stage2_real_3,  stage2_imag_3,  stage2_real_1,  stage2_imag_1,  W4_Real, W4_Imag, stage3_real_5,  stage3_imag_5);
-FFT_MULTI FFT_S3_6 (clk, rst, stage3_valid, stage2_real_6,  stage2_imag_6,  stage2_real_4,  stage2_imag_4,  W0_Real, W0_Imag, stage3_real_6,  stage3_imag_6);
-FFT_MULTI FFT_S3_7 (clk, rst, stage3_valid, stage2_real_7,  stage2_imag_7,  stage2_real_5,  stage2_imag_5,  W4_Real, W4_Imag, stage3_real_7,  stage3_imag_7);
-FFT_MULTI FFT_S3_10(clk, rst, stage3_valid, stage2_real_10, stage2_imag_10, stage2_real_8,  stage2_imag_8,  W0_Real, W0_Imag, stage3_real_12, stage3_imag_12);
-FFT_MULTI FFT_S3_11(clk, rst, stage3_valid, stage2_real_11, stage2_imag_11, stage2_real_9,  stage2_imag_9,  W4_Real, W4_Imag, stage3_real_13, stage3_imag_13);
-FFT_MULTI FFT_S3_14(clk, rst, stage3_valid, stage2_real_14, stage2_imag_14, stage2_real_12, stage2_imag_12, W0_Real, W0_Imag, stage3_real_14, stage3_imag_14);
-FFT_MULTI FFT_S3_15(clk, rst, stage3_valid, stage2_real_15, stage2_imag_15, stage2_real_13, stage2_imag_13, W4_Real, W4_Imag, stage3_real_15, stage3_imag_15);
+FFT_MULTI FFT_S4_1 (clk, rst, stage4_valid, stage3_real_1,  stage3_imag_1,  stage3_real_0,  stage3_imag_0,  W0_Real, W0_Imag, stage4_real_1,  stage4_imag_1);
+FFT_MULTI FFT_S4_3 (clk, rst, stage4_valid, stage3_real_3,  stage3_imag_3,  stage3_real_2,  stage3_imag_2,  W0_Real, W0_Imag, stage4_real_3,  stage4_imag_3);
+FFT_MULTI FFT_S4_5 (clk, rst, stage4_valid, stage3_real_5,  stage3_imag_5,  stage3_real_4,  stage3_imag_4,  W0_Real, W0_Imag, stage4_real_5,  stage4_imag_5);
+FFT_MULTI FFT_S4_7 (clk, rst, stage4_valid, stage3_real_7,  stage3_imag_7,  stage3_real_6,  stage3_imag_6,  W0_Real, W0_Imag, stage4_real_7,  stage4_imag_7);
+FFT_MULTI FFT_S4_9 (clk, rst, stage4_valid, stage3_real_9,  stage3_imag_9,  stage3_real_8,  stage3_imag_8,  W0_Real, W0_Imag, stage4_real_9,  stage4_imag_9);
+FFT_MULTI FFT_S4_11(clk, rst, stage4_valid, stage3_real_11, stage3_imag_11, stage3_real_10, stage3_imag_10, W0_Real, W0_Imag, stage4_real_11, stage4_imag_11);
+FFT_MULTI FFT_S4_13(clk, rst, stage4_valid, stage3_real_13, stage3_imag_13, stage3_real_12, stage3_imag_12, W0_Real, W0_Imag, stage4_real_13, stage4_imag_13);
+FFT_MULTI FFT_S4_15(clk, rst, stage4_valid, stage3_real_15, stage3_imag_15, stage3_real_14, stage3_imag_14, W0_Real, W0_Imag, stage4_real_15, stage4_imag_15);
 
-
+assign	fft_d0 = {stage4_real_0[31], stage4_real_0[22:8], stage4_imag_0[31], stage4_imag_0[22:8]};
+assign	fft_d1 = {stage4_real_8[31], stage4_real_8[22:8], stage4_imag_8[31], stage4_imag_8[22:8]};
+assign	fft_d2 = {stage4_real_4[31], stage4_real_4[22:8], stage4_imag_4[31], stage4_imag_4[22:8]};
+assign	fft_d3 = {stage4_real_12[31], stage4_real_12[22:8], stage4_imag_12[31], stage4_imag_12[22:8]};
+assign	fft_d4 = {stage4_real_2[31], stage4_real_2[22:8], stage4_imag_2[31], stage4_imag_2[22:8]};
+assign	fft_d5 = {stage4_real_10[31], stage4_real_10[22:8], stage4_imag_10[31], stage4_imag_10[22:8]};
+assign	fft_d6 = {stage4_real_6[31], stage4_real_6[22:8], stage4_imag_6[31], stage4_imag_6[22:8]};
+assign	fft_d7 = {stage4_real_14[31], stage4_real_14[22:8], stage4_imag_14[31], stage4_imag_14[22:8]};
+assign	fft_d8 = {stage4_real_1[31], stage4_real_1[22:8], stage4_imag_1[31], stage4_imag_1[22:8]};
+assign	fft_d9 = {stage4_real_9[31], stage4_real_9[22:8], stage4_imag_9[31], stage4_imag_9[22:8]};
+assign	fft_d10= {stage4_real_5[31], stage4_real_5[22:8], stage4_imag_5[31], stage4_imag_5[22:8]};
+assign	fft_d11= {stage4_real_13[31], stage4_real_13[22:8], stage4_imag_13[31], stage4_imag_13[22:8]};
+assign	fft_d12= {stage4_real_3[31], stage4_real_3[22:8], stage4_imag_3[31], stage4_imag_3[22:8]};
+assign	fft_d13= {stage4_real_11[31], stage4_real_11[22:8], stage4_imag_11[31], stage4_imag_11[22:8]};
+assign	fft_d14= {stage4_real_7[31], stage4_real_7[22:8], stage4_imag_7[31], stage4_imag_7[22:8]};
+assign	fft_d15= {stage4_real_15[31], stage4_real_15[22:8], stage4_imag_15[31], stage4_imag_15[22:8]};
 always@(posedge clk or posedge rst)
 	if(rst)
 		stage1_valid <= 0;
