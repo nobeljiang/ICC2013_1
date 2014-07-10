@@ -265,7 +265,7 @@ always@(posedge clk or posedge rst)
 	if(rst)
 		freq <= 0;
 	else if(fft_valid_d5)
-		freq <= (comp3_0 > comp3_1) ? comp3_0[36:33] : comp3_1[36:33];
+		freq <= (comp3_0[32:0] > comp3_1[32:0]) ? comp3_0[36:33] : comp3_1[36:33];
 
 always@(posedge clk or posedge rst)
 	if(rst)
